@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'jdk21'
+    }
+
     environment {
         STUDENT = 'Amalbek Miras'
         IMAGE   = 'amalbek-miras-student-api:v1.0-amalbek-miras'
