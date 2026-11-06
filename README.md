@@ -1,6 +1,6 @@
 # Amalbek Miras Student API
 
-Spring Boot CRUD application for students - DevOps midterm, IITU.
+Spring Boot CRUD REST API for students with PostgreSQL and Docker - DevOps midterm, IITU.
 
 Author: Amalbek Miras
 
