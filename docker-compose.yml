@@ -1,0 +1,42 @@
+name: amalbek-miras-student-api
+
+services:
+  app:
+    build: .
+    image: amalbek-miras-student-api:${APP_VERSION:-v1.0-amalbek-miras}
+    container_name: amalbek-miras-app
+    ports:
+      - "8080:8080"
+    environment:
+      APP_VERSION: ${APP_VERSION:-v1.0-amalbek-miras}
+      DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - amalbek-miras-net
+
+  db:
+    image: postgres:16-alpine
+    container_name: amalbek-miras-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - amalbek-miras-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - amalbek-miras-net
+
+volumes:
+  amalbek-miras-pgdata:
+
+networks:
+  amalbek-miras-net:
