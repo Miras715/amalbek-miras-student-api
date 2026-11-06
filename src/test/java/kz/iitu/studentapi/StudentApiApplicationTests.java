@@ -22,7 +22,7 @@ class StudentApiApplicationTests {
         String json = "{\"firstName\":\"Miras\",\"lastName\":\"Amalbek\",\"email\":\"miras@iitu.kz\",\"groupName\":\"IT2-2313\"}";
         mvc.perform(post("/api/students").contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.lastName").value("Amalbek"));
+                .andExpect(jsonPath("$.lastName").value("WrongSurname"));
         mvc.perform(get("/api/students"))
                 .andExpect(status().isOk());
     }
