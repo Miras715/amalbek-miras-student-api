@@ -1,6 +1,6 @@
 # Amalbek Miras Student API
 
-Spring Boot CRUD application for students (DevOps midterm).
+Spring Boot CRUD application for students - DevOps midterm, IITU.
 
 Author: Amalbek Miras
 
